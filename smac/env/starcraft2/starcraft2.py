@@ -69,6 +69,7 @@ class StarCraft2Env(MultiAgentEnv):
         step_mul=8,
         move_amount=2,
         difficulty="7",
+        shoot_range=6,
         game_version=None,
         seed=None,
         continuing_episode=False,
@@ -202,6 +203,9 @@ class StarCraft2Env(MultiAgentEnv):
         self._move_amount = move_amount
         self._step_mul = step_mul
         self.difficulty = difficulty
+
+        # Customized
+        self.shoot_range = shoot_range
 
         # Observations and state
         self.obs_own_health = obs_own_health
@@ -839,7 +843,8 @@ class StarCraft2Env(MultiAgentEnv):
 
     def unit_shoot_range(self, agent_id):
         """Returns the shooting range for an agent."""
-        return 6
+        #return 6
+        return self.shoot_range
 
     def unit_sight_range(self, agent_id):
         """Returns the sight range for an agent."""
